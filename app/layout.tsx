@@ -1,7 +1,7 @@
 "use client";
 
 
-import React, { useEffect } from 'react';
+import React, { useEffect , useState } from 'react';
 import Image from 'next/image';
 import './globals.css';
 import LogoImg from '../public/LogoImg.png';
@@ -20,7 +20,13 @@ export default function DashboardLayout({
     document.title = "Illegal Coin";
   });
   const pathname = usePathname();
-  
+    const [search, setSearch] = useState('')
+
+
+   function handleSearch () {
+      setSearch('')
+   }
+
     const navItems = [
     { href: "/", label: "Home" },
     { href: "/chat", label: "Chat" },
@@ -39,13 +45,18 @@ export default function DashboardLayout({
         </div>
         <div className='Search-LS'>
         <div className='searchbar'>
-        <input placeholder='What do u want?' />
-        <Search className="search-icon" />
+        <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}  
+            placeholder='What do u want?' />
+        <Search
+          onClick={() => handleSearch()}  
+           className="search-icon" />
         </div>
         <div className="L-S">
-          <button className="Login">Login</button>
-        
-          <button className="Signup">SignUp</button>
+          <nav className="Login">Login</nav>
+          
+          <nav className="Signup">SignUp</nav>
         </div>
       </div>
       </div>
