@@ -1,26 +1,153 @@
-@import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+.all {
+    
+    width: 100%;
+    height: 100vh;
+    
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+
+.head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 20px;
+}
+.Ava-Name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-right: auto;
+    width: 15%;
+    cursor: pointer;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    cursor: pointer;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.title {
+    font-size: 20px;
+   color: orange;
+   
+}
+
+.Search-LS {
+  
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+}
+input {
+    width: 900px;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px solid rgb(123, 123, 123);
+    padding: 5px 10px;
+    font-size: 16px;
+    
+}
+input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgb(47, 47, 47);
+    border: 1px solid rgb(123, 123, 123);
+}
+
+.searchbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    
+}
+.search-icon {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    color: gray;
+    cursor: pointer;
+}
+
+.L-S {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    
+}
+.Login {
+    padding: 15px 20px;
+    background-color: #cfdbea;
+    border: 0px;    
+    border-radius: 30px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.Login:hover {
+    background-color: #b0c4de;
+    cursor: pointer;
+}
+.Signup {
+    padding: 15px 20px;
+   border: 0px;
+   background-color: #cfdbea;
+    border-radius: 30px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    
+}
+.Signup:hover {
+    background-color: #b0c4de;
+    cursor: pointer;
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+}
+.sidebar {
+    width: 15%;
+    height: 100vh;
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: black;
+    text-decoration: none;
+    
+
+}
+
+.content {
+    width: 85%;
+    height: 100vh;
+    background-color: #cfdbea;
+    border-radius: 10px;
+}
+
+
+.sidebar-link {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.sidebar-link-active {
+    background-color: #cfdbea;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    text-decoration: none;
 }
