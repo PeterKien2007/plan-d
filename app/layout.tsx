@@ -1,27 +1,48 @@
 "use client";
 
 
-import React, { useEffect , useState } from 'react';
+import React, { useEffect , useState, useRef } from 'react';
 import Image from 'next/image';
 import './globals.css';
 import LogoImg from '../public/LogoImg.png';
 
+
 import { usePathname } from 'next/navigation';
-import { Search } from 'lucide-react';
+import { Search  } from 'lucide-react';
 
 
 
 export default function DashboardLayout({
-  children,
-}: {
+children}: {
   children: React.ReactNode
 }) {
   useEffect(() => {
-    document.title = "Illegal Coin";
-  });
-  const pathname = usePathname();
-    const [search, setSearch] = useState('')
+    document.title='Illegal Coin'
+    const handleKeyDown = (event: KeyboardEvent) => {
+     
+      if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+        event.preventDefault(); 
+        inputRef.current?.focus();
+        
+      
+        inputRef.current?.select();
+      }
+    };
 
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [])
+
+ 
+  const pathname = usePathname();
+ const inputRef = useRef<HTMLInputElement>(null);
+    const [search, setSearch] = useState<string>('')
+    const handleKeyDown = (event: { key: string; }) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };        
 
    function handleSearch () {
       setSearch('')
@@ -36,19 +57,29 @@ export default function DashboardLayout({
   
   return (
     <html lang="en">
+      <head>
+        <link rel='icon'  href='bitcoin.png'/>
+      </head>
       <body>
         <div className='all'>
       <div className="head">
-        <div className='Ava-Name'>
-        <Image src={LogoImg} alt="Logo" className="logo" />
+        <a
+           href={"/"}
+           className='Ava-Name'>
+        <Image 
+           src={LogoImg}
+           alt="logo" 
+           className="logo" />
         <h1 className="title">Illegal Coin</h1>
-        </div>
+        </a>
         <div className='Search-LS'>
         <div className='searchbar'>
         <input
             value={search}
-            onChange={(e) => setSearch(e.target.value)}  
-            placeholder='What do u want?' />
+            ref={inputRef}
+            onChange={(e) => setSearch(e.target.value)}
+            onKeyDown={handleKeyDown} 
+            placeholder='What do u want? ( ⌘ + K )' />
         <Search
           onClick={() => handleSearch()}  
            className="search-icon" />
@@ -62,9 +93,10 @@ export default function DashboardLayout({
       </div>
 
       <div className="body">
-        <nav className="sidebar">
+        <nav  className="sidebar">
           {navItems.map(({ href, label }) => (
             <a
+              
               key={href}
               href={href}
               className={
@@ -77,7 +109,7 @@ export default function DashboardLayout({
         </nav>
           
         <div className="content">
-
+          {children}
         </div>
       </div>
     </div>

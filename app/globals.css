@@ -15,6 +15,7 @@
     align-items: center;
     padding: 10px 20px;
 }
+
 .Ava-Name {
     display: flex;
     flex-direction: row;
@@ -23,6 +24,7 @@
     margin-right: auto;
     width: 15%;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .logo {
@@ -35,6 +37,7 @@
 .title {
     font-size: 20px;
    color: orange;
+ 
    
 }
 
@@ -79,35 +82,43 @@ input:focus {
     display: flex;
     flex-direction: row;
     margin-left: auto;
-    color: rgb(255, 128, 0);
+    color: rgb(255, 255, 255);
     gap: 2px;
+    cursor: pointer;
 }
 .Login {
     padding: 15px 20px;
-    background-color: #cfdbea;
-    border: 0px;    
+    border: 1px solid;    
     border-radius: 30px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
+    box-shadow:0 0 10px #763838;
+    background-color: #dd1e1e;
+    border-top: 1px solid rgba(255,255,255,0.3);
 }
 
 .Login:hover {
-    background-color: #b0c4de;
-    cursor: pointer;
+ background-color: rgb(169, 48, 48)
+    
 }
+
+
 .Signup {
     padding: 15px 20px;
-   border: 0px;
-   background-color: #cfdbea;
+    border: 1px solid;
     border-radius: 30px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
+    box-shadow:0 0 10px #7a6236;
+    background-color: rgb(255, 149, 0);
+    border-top: 1px solid rgba(255,255,255,0.4);
     
 }
+
 .Signup:hover {
-    background-color: #b0c4de;
-    cursor: pointer;
+    background-color: rgb(161, 122, 39);
 }
+
 
 .body {
     display: flex;
@@ -116,10 +127,10 @@ input:focus {
 .sidebar {
     width: 15%;
     height: 100vh;
-    padding-top: 50px;
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 5px;
     color: black;
     text-decoration: none;
     
@@ -131,6 +142,7 @@ input:focus {
     height: 100vh;
     background-color: #cfdbea;
     border-radius: 10px;
+  
 }
 
 
