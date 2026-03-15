@@ -3,12 +3,12 @@
 
 import React, { useEffect , useState, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import './globals.css';
 import LogoImg from '../public/LogoImg.png';
-
-
 import { usePathname } from 'next/navigation';
-import { Search  } from 'lucide-react';
+import { Search, Settings, House, MessageCircleMore, Bell, UserRound  } from 'lucide-react';
+
 
 
 
@@ -16,7 +16,19 @@ export default function DashboardLayout({
 children}: {
   children: React.ReactNode
 }) {
+
+    
+  const pathname = usePathname();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [search, setSearch] = useState<string>('')
+  
+  
+
+
+
   useEffect(() => {
+    
+    
     document.title='Illegal Coin'
     const handleKeyDown = (event: KeyboardEvent) => {
      
@@ -34,25 +46,30 @@ children}: {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [])
 
+  
+
  
-  const pathname = usePathname();
- const inputRef = useRef<HTMLInputElement>(null);
-    const [search, setSearch] = useState<string>('')
-    const handleKeyDown = (event: { key: string; }) => {
+
+  const handleKeyDown = (event: { key: string; }) => {
     if (event.key === 'Enter') {
       handleSearch();
-    }
-  };        
 
+    }
+  }; 
+
+
+   
    function handleSearch () {
-      setSearch('')
+      inputRef.current?.blur();
    }
 
     const navItems = [
-    { href: "/", label: "Home" },
-    { href: "/chat", label: "Chat" },
-    { href: "/notifications", label: "Notifications" },
-    { href: "/account", label: "Account" },
+    { href: "/", label : <House/> , name: "Home" }, 
+    { href: "/Content/chat", label: <MessageCircleMore/>,  name: "Chat" }, 
+    { href: "/Content/notifications", label:<Bell/> , name: "Notification" }, 
+    { href: "/Content/account", label: <UserRound/>, name: "Account" },
+    { href: "/Content/setting", label: <Settings/> , name: "Settings"},
+
   ];
   
   return (
@@ -79,11 +96,12 @@ children}: {
             ref={inputRef}
             onChange={(e) => setSearch(e.target.value)}
             onKeyDown={handleKeyDown} 
-            placeholder='What do u want? ( ⌘ + K )' />
+            placeholder='Search ( ⌘/Ctrl + K )' />
         <Search
           onClick={() => handleSearch()}  
            className="search-icon" />
         </div>
+      
         <div className="L-S">
           <nav className="Login">Login</nav>
           
@@ -91,11 +109,11 @@ children}: {
         </div>
       </div>
       </div>
-
+ 
       <div className="body">
         <nav  className="sidebar">
-          {navItems.map(({ href, label }) => (
-            <a
+          {navItems.map(({ href, label, name }) => (
+            <Link
               
               key={href}
               href={href}
@@ -103,13 +121,14 @@ children}: {
                 pathname === href ? "sidebar-link-active" : "sidebar-link"
               }
             >
-              {label}
-            </a>
+             <span className="sidebar-icon">{label}</span>
+             <span className="sidebar-name">{name}</span>
+            </Link>
           ))}
         </nav>
           
         <div className="content">
-          {children}
+           {children}
         </div>
       </div>
     </div>
